@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { PayCalculatorForm } from '@/components/PayCalculatorForm';
 import { ResultsCard } from '@/components/ResultsCard';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { calculateTax, CalculationInputs } from '@/lib/ausTax';
 import { Frequency } from '@/lib/money';
 
@@ -59,28 +60,31 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#f8f9fa' }}>
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-6 py-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">M</span>
+      <header className="bg-card border-b border-border shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-[#00c389] rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">M</span>
+              </div>
+              <span className="text-[#00c389] font-semibold">money.com.au</span>
             </div>
-            <span className="text-primary font-semibold">money.com.au</span>
+            <ThemeToggle />
           </div>
-          <h1 className="text-4xl font-bold text-foreground mb-2">PAY CALCULATOR</h1>
-          <p className="text-muted-foreground text-lg">
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">PAY CALCULATOR</h1>
+          <p className="text-muted-foreground text-base sm:text-lg">
             Find out how much take-home pay you'll receive if you're earning a certain salary
           </p>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
-        <div className="grid lg:grid-cols-[420px_1fr] gap-8 max-w-[1200px]">
+      <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="grid xl:grid-cols-[420px_1fr] gap-6 sm:gap-8 max-w-[1400px]">
           {/* Form */}
-          <div>
+          <div className="order-2 xl:order-1">
             <PayCalculatorForm
               inputs={inputs}
               onChange={setInputs}
@@ -89,7 +93,7 @@ const Index = () => {
           </div>
 
           {/* Results */}
-          <div>
+          <div className="order-1 xl:order-2">
             <ResultsCard
               calculation={calculation}
               displayFrequency={displayFrequency}
@@ -99,12 +103,12 @@ const Index = () => {
         </div>
 
         {/* Information Sections */}
-        <div className="mt-16 max-w-4xl mx-auto space-y-12">
+        <div className="mt-12 sm:mt-16 max-w-4xl mx-auto space-y-8 sm:space-y-12 px-4 sm:px-0">
           <section className="prose prose-neutral max-w-none">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">
               How to calculate your take-home pay (Australia)
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm sm:text-base">
               Your take-home pay is calculated by deducting income tax, Medicare levy, Medicare levy 
               surcharge (if applicable), and HELP/HECS repayments from your gross salary. This calculator 
               uses the latest Australian Tax Office (ATO) rates and thresholds.
@@ -112,30 +116,30 @@ const Index = () => {
           </section>
 
           <section className="prose prose-neutral max-w-none">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">
               Income tax brackets (2025–26)
             </h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-lg font-semibold mb-3">Residents</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between border-b pb-1">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 text-foreground">Residents</h3>
+                <div className="space-y-2 text-xs sm:text-sm">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$0 – $18,200</span>
                     <span>0%</span>
                   </div>
-                  <div className="flex justify-between border-b pb-1">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$18,201 – $45,000</span>
                     <span>16%</span>
                   </div>
-                  <div className="flex justify-between border-b pb-1">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$45,001 – $135,000</span>
                     <span>30%</span>
                   </div>
-                  <div className="flex justify-between border-b pb-1">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$135,001 – $190,000</span>
                     <span>37%</span>
                   </div>
-                  <div className="flex justify-between border-b pb-1">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$190,001+</span>
                     <span>45%</span>
                   </div>
@@ -143,17 +147,17 @@ const Index = () => {
               </div>
               
               <div>
-                <h3 className="text-lg font-semibold mb-3">Non-residents</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between border-b pb-1">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 text-foreground">Non-residents</h3>
+                <div className="space-y-2 text-xs sm:text-sm">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$0 – $135,000</span>
                     <span>30%</span>
                   </div>
-                  <div className="flex justify-between border-b pb-1">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$135,001 – $190,000</span>
                     <span>37%</span>
                   </div>
-                  <div className="flex justify-between border-b pb-1">
+                  <div className="flex justify-between border-b border-border pb-1 text-foreground">
                     <span>$190,001+</span>
                     <span>45%</span>
                   </div>
@@ -163,10 +167,10 @@ const Index = () => {
           </section>
 
           <section className="prose prose-neutral max-w-none">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">
               Is our Pay Calculator accurate?
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm sm:text-base">
               This calculator uses official Australian Tax Office rates and is updated for the 
               2025–26 financial year. Results are estimates and may vary based on individual 
               circumstances. For complex situations, consult a qualified tax professional.
